@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 public class Transaction {
 
     @Id
@@ -21,10 +22,10 @@ public class Transaction {
 
     private Integer id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, columnDefinition = "VARCHAR(255) DEFAULT uuid_generate_v4()")
     private String uuid;
 
-    private BigDecimal amount;
+    private Double amount;
 
     @Column(name = "is_payment")
     private Boolean isPayment;

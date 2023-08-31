@@ -6,10 +6,15 @@ import co.cstad.springdatajpa.api.base.BaseRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
@@ -24,19 +29,19 @@ public class AccountController {
         return BaseRest.builder()
                 .status(true)
                 .code(HttpStatus.OK.value())
-                .message("Account created successfully!")
+                .message("Account have been created successfully!")
                 .timestamp(LocalDateTime.now())
                 .data(accountDto)
                 .build();
     }
 
     @GetMapping("/{uuid}")
-    public EntityModel<?> findUserByUuid(@PathVariable String uuid){
+    public EntityModel<?> findAccountByUuid(@PathVariable String uuid){
         return accountService.findByUuid(uuid);
     }
 
     @PutMapping("/{uuid}/rename")
-    public BaseRest<?> updateUserByUuid(@RequestBody RenameAccountDto renameAccountDto, @PathVariable String uuid){
+    public BaseRest<?> updateAccountByUuid(@RequestBody RenameAccountDto renameAccountDto, @PathVariable String uuid){
         Account account = accountService.renameAccountByUuid(uuid, renameAccountDto);
         return BaseRest.builder()
                 .status(true)
@@ -48,7 +53,7 @@ public class AccountController {
     }
 
     @GetMapping
-    public CollectionModel<?> findUsers() {
+    public CollectionModel<?> findAllAccounts() {
         return accountService.findAllUser();
     }
 

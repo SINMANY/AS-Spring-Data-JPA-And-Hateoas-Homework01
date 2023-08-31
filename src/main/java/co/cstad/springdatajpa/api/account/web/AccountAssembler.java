@@ -40,8 +40,8 @@ public class AccountAssembler extends RepresentationModelAssemblerSupport<Accoun
     @Override
     public EntityModel<AccountDto> toModel(Account entity) {
         AccountDto accountDto = accountMapStruct.mapAccountToAccountDto(entity);
-        Link selfLink =linkTo(methodOn(UserController.class).findUserByUuid(entity.getUuid())).withSelfRel();
-        Link collectionLink  =linkTo(methodOn(UserController.class).findUsers()).withRel(IanaLinkRelations.COLLECTION);
+        Link selfLink =linkTo(methodOn(AccountController.class).findAccountByUuid(entity.getUuid())).withSelfRel();
+        Link collectionLink  =linkTo(methodOn(AccountController.class).findAllAccounts()).withRel("Find-all-users");
 
         return EntityModel.of(accountDto,selfLink,collectionLink);
     }
