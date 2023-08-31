@@ -1,0 +1,47 @@
+# server port
+server:
+  port: 8080
+
+# configuration database
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_homework
+    username: postgres
+    password: 1219
+    driver-class-name: org.postgresql.Driver
+
+  # jpa configuration way 1
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# jpa configuration way 2
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        show_sql: true
+#        format_sql: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
